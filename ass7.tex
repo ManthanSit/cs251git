@@ -99,35 +99,6 @@ we can apply this method.
 \subsubsection{Pseudocode}
 The pseudocode for the implementation of above discussed multiplication as an algoritm.
 
-\begin{enumerate}
-
-  \begin{algorithm}[H]
-   \caption{Case 2: The first digits add up to 10, and the last ones are same.}
-    \begin{algorithmic}[1]
-      \Function{multiplyy}{$a,b$} \Comment{Where a and b are integers }
-
-        \State $a_0 \leftarrow a$ mod $10$
-        \State $b_0 \leftarrow b$ mod $10$
-        \State $a_1 \leftarrow a/10$
-        \State $b_1 \leftarrow b/10$
-            \If {$a_0\neq b_0$ or $a_1 + b_1 \neq 10$}
-                \State  {\Return Numbers not in correct format}
-            \Else 
-                \State $A_1 \leftarrow (a_1 \times b_1) + a_0$
-                \State $A_1 \leftarrow A_1 \times 100$
-        		\State $A_0 \leftarrow a_0 \times a_0$
-        		\State $N \leftarrow A_1 + A_0$
-        		\State {\Return $N$}
-        	\EndIf
-
-       \EndFunction
-
-\end{algorithmic}
-\end{algorithm}
-\end{enumerate}
-\subsubsection{Procedure for mentally applying this}
-To calculate the product mentally, find the product of the tens place digits plus the ones place digit. Find the product of the ones place digit. Join both of these solutions to get the final product. If the square of the ones place digit is single digit merge it after converting it to a two digit number by placing zero before it.
-
 
 \section{Algebric Proof of Methods}
 Let the given numbers be $a$ and $b$ such that both of these have two digits. Let the subscript number $i$ of these numbers denote the $i^{th}$ place digit of the number.\newline
