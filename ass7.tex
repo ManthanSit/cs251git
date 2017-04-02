@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{cite}
+
+\begin{document}
+
+\title{\textbf{Multiplication Tricks in Vedas}}
+\author{Manthan Sit}
+\date{\small{\today}}
+\maketitle
+
+
+\begin{abstract}
+
+The Veda Samhitâ is composed of hymns to various deities and also hymns praising all forms of knowledge. They don't make distinctions between secular and sacred knowledge (as we define them today) because secular knowledge was thought to be a tool to be used to discover sacred knowledge.\footnote{Some people believe vedic maths not to be genius but just our over stated facts which we have interpreted even when they were not there~\cite{fraud} } This framework, in which knowledge is seen as one whole continuum, offers the basis for these statements to be interpreted in multiple ways in multiple contexts (astronomical, spiritual, terrestrial etc). The knowledge of mathematics and geometry were all deemed important and worthy of formulations into mantra. Some of the hymns, which deal with cosmology, imply that the rishis were very familiar with geometry and the planning needed to construct complex objects.~\cite{wiki}
+
+Since the Vedas are not texts on mathematics but mention a lot of mathematical concepts, it could be construed that mathematics as a science also existed. It is unlikely that stray statements on mathematical concepts like progressions, concept of infinity and zero existed without mathematics as a study. Whether we can trace out texts is secondary, since Veda came down as an oral tradition for very long. So Vedic evidence is primarily indirect, and is more of an indicator of the kind of concepts that existed than a definition/explanation of those. Today we will look at some of the tricks for multiplication present in the vedas.~\cite{vedic}
+
+\end{abstract}
+
+\vspace{10mm}
+
+\section{Introduction}
+
+In this report we will look at ways to multiply some of the two digit numbers. The numbers must satisfy a few criteria as follows -\newline
+\textbullet  \hspace{5pt}The first digits are same, and the last ones add up to 10.\newline
+\textbullet  \hspace{5pt}The first digits add up to 10, and the last ones are same.\newline
+
+\section{Trick for solving}
+\subsection{Case 1: The first digits are same, and the last ones add up to 10}
+
+To calculate the product, the solution is divided into two parts. The first part of the solution comes from the tens place digit and the second part of the solution comes from the ones place digits. The first part of solution is the product of the tens place digit which is common with its successor integer on the number line i.e. the integer just greater than that. The second part of the solution is the product of the ones place digits. The solution is the number you get after merging the first and second part of the solution.~\cite{mul1}
+
+\vspace{5mm}
+
+\hspace{-17pt}For example: $66 \times 64$\newline
+\begin{center}
+\includegraphics[scale=0.5]{66*64}\newline
+\end{center}
+
+\hspace{-17pt}Here, the last digits are 6 and 4, which add to 10. Also, the digits earlier to them are same i.e. 6. So,
+we can apply this method.
+
+\subsubsection{Pseudocode}
+The pseudocode for the implementation of above discussed multiplication as an algoritm.
+
+\begin{enumerate}
+
+  \begin{algorithm}[H]
+   \caption{Case 1: The first digits are same, and the last ones add up to 10}
+    \begin{algorithmic}[1]
+      \Function{multiplyx}{$a,b$} \Comment{Where a and b are integers }
+
+        \State $a_0 \leftarrow a$ mod $10$
+        \State $b_0 \leftarrow b$ mod $10$
+        \State $a_1 \leftarrow a/10$
+        \State $b_1 \leftarrow b/10$
+            \If {$a_1\neq b_1$ or $a_0 + b_0 \neq 10$}
+                \State  {\Return Numbers not in correct format}
+            \Else 
+                \State $A_1 \leftarrow a_1 \times (a_1 + 1)$
+                \State $A_1 \leftarrow A_1 \times 100$
+        		\State $A_0 \leftarrow a_0 \times b_0$
+        		\State $N \leftarrow A_1 + A_0$
+        		\State {\Return $N$}
+        	\EndIf
+
+       \EndFunction
+
+\end{algorithmic}
+\end{algorithm}
+\end{enumerate}
+\subsubsection{Procedure for mentally applying this}
+To calculate the product mentally, find the product of the tens place digit with its successor integer. Find the product of the ones place digits. Join both of these solutions to get the final product. If the ones place digits are 1 and 9 then instead of 9 merge 09, all other cases are fine.
+
+\subsection{Case 2: The first digits add up to 10, and the last ones are same.}
+
+To calculate the product, the solution is divided into two parts. The first part of the solution comes from the tens place digits and the second part of the solution comes from the ones place digit. The first part of solution is the product of the tens place digits plus the ones place digit. The second part of the solution is the product of the ones place digit. The solution is the number you get after merging the first and second part of the solution.~\cite{mul2}
+
+\vspace{5mm}
+
+\hspace{-17pt}For example: $34 \times 74$\newline
+\begin{center}
+\includegraphics[scale=0.5]{34*74}\newline
+\end{center}
+
+\hspace{-17pt}Here, the first digits are 3 and 7, which add to 10. Also, the digits after them are same i.e. 4. So,
+we can apply this method.
+
+
+
+\subsubsection{Pseudocode}
+The pseudocode for the implementation of above discussed multiplication as an algoritm.
+
+\begin{enumerate}
+
+  \begin{algorithm}[H]
+   \caption{Case 2: The first digits add up to 10, and the last ones are same.}
+    \begin{algorithmic}[1]
+      \Function{multiplyy}{$a,b$} \Comment{Where a and b are integers }
+
+        \State $a_0 \leftarrow a$ mod $10$
+        \State $b_0 \leftarrow b$ mod $10$
+        \State $a_1 \leftarrow a/10$
+        \State $b_1 \leftarrow b/10$
+            \If {$a_0\neq b_0$ or $a_1 + b_1 \neq 10$}
+                \State  {\Return Numbers not in correct format}
+            \Else 
+                \State $A_1 \leftarrow (a_1 \times b_1) + a_0$
+                \State $A_1 \leftarrow A_1 \times 100$
+        		\State $A_0 \leftarrow a_0 \times a_0$
+        		\State $N \leftarrow A_1 + A_0$
+        		\State {\Return $N$}
+        	\EndIf
+
+       \EndFunction
+
+\end{algorithmic}
+\end{algorithm}
+\end{enumerate}
+\subsubsection{Procedure for mentally applying this}
+To calculate the product mentally, find the product of the tens place digits plus the ones place digit. Find the product of the ones place digit. Join both of these solutions to get the final product. If the square of the ones place digit is single digit merge it after converting it to a two digit number by placing zero before it.
+
+
+\section{Algebric Proof of Methods}
+Let the given numbers be $a$ and $b$ such that both of these have two digits. Let the subscript number $i$ of these numbers denote the $i^{th}$ place digit of the number.\newline
+$\therefore a$ can be represented as - 
+$$a = (a_1 \times 10) + a_0$$
+
+\subsection{Case 1: The first digits are same, and the last ones add up to 10.}
+$\therefore a_1 = b_1$ and $a_0 + b_0 = 10$
+\begin{align*}
+a \times b &= (a_1 \times 10 + a_0) \times (b_1 \times 10 + b_0)\\
+&= 10^2a_1b_1 + 10(a_1b_0 + a_0b_1) + a_0b_0\\
+&= 10^2{a_1}^2 + 10a_1(a_0 + b_0) + a_0b_0\\
+&= 10^2{a_1}^2 + 10^2a_1 + a_0b_0\\
+&= 10^2a_1(a_1 + 1) + a_0b_0\\
+\end{align*}
+$\therefore$ Our method is correct.
+
+\subsection{Case 2: The first digits add up to 10, and the last ones are same.}
+$\therefore a_0 = b_0$ and $a_1 + b_1 = 10$
+\begin{align*}
+a \times b &= (a_1 \times 10 + a_0) \times (b_1 \times 10 + b_0)\\
+&= 10^2a_1b_1 + 10(a_1b_0 + a_0b_1) + a_0b_0\\
+&= 10^2a_1b_1 + 10a_0(a_1 + b_1) + {a_0}^2\\
+&= 10^2a_1b_1 + 10^2a_1 + {a_0}^2\\
+&= 10^2(a_1b_1 + a_0) + {a_0}^2\\
+\end{align*}
+$\therefore$ Our method is correct.~\cite{wikib}
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
+\end{document}
